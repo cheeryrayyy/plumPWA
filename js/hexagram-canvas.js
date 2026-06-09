@@ -90,10 +90,10 @@ function drawHexagram(canvas, result, col) {
 
         // 爻位标签
         const posLabels = ['初','二','三','四','五','上'];
-        ctx.fillStyle = THEME.FG_DIM;
-        ctx.font = '11px "PingFang SC", sans-serif';
+        ctx.fillStyle = '#c0b080';  // 比 FG_DIM 更亮
+        ctx.font = 'bold 13px "PingFang SC", "Hiragino Sans GB", sans-serif';
         ctx.textAlign = 'right';
-        ctx.fillText(posLabels[i], W - 6, y + 3);
+        ctx.fillText(posLabels[i], W - 4, y + 4);
     }
 
     // 返回卦信息用于外部标签

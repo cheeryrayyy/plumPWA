@@ -76,7 +76,7 @@ html, body {
 .tab-btn {
     flex-shrink: 0;
     background: var(--btn-bg); border: 1px solid var(--sep);
-    color: var(--fg-dim); font-size: 12px; padding: 6px 14px;
+    color: #b8b090; font-size: 13px; font-weight: 600; padding: 7px 14px;
     border-radius: 16px; cursor: pointer;
     white-space: nowrap;
     transition: all 0.2s;
@@ -161,7 +161,7 @@ html, body {
 }
 
 .method-tip {
-    font-size: 12px; color: var(--fg-dim); text-align: center;
+    font-size: 14px; color: var(--fg-body); text-align: center;
     margin-bottom: 8px;
 }
 
@@ -171,13 +171,13 @@ html, body {
 }
 
 .method-label {
-    font-size: 11px; color: var(--fg-dim);
+    font-size: 13px; color: var(--fg-body);
 }
 
 .method-select {
     background: #2a2a2a; color: var(--fg-body);
     border: 1px solid var(--sep); border-radius: 6px;
-    padding: 6px 8px; font-size: 12px; font-family: inherit;
+    padding: 7px 10px; font-size: 14px; font-family: inherit;
     -webkit-appearance: none; appearance: none;
 }
 .method-text-input {
@@ -193,7 +193,7 @@ html, body {
 }
 .mode-btn {
     background: var(--btn-bg); border: 1px solid var(--sep);
-    color: var(--fg-dim); font-size: 12px; padding: 5px 12px;
+    color: var(--fg-body); font-size: 13px; padding: 6px 14px;
     border-radius: 14px; cursor: pointer; font-family: inherit;
 }
 .mode-btn.active {
@@ -294,7 +294,7 @@ html, body {
 
 /* ── Responsive ────────────────────────────────────────── */
 @media (max-width: 380px) {
-    .tab-btn { font-size: 11px; padding: 5px 10px; }
+    .tab-btn { font-size: 12px; padding: 6px 10px; }
     .pillars-text { font-size: 16px; }
     #hexGrid { gap: 4px; }
     .hex-col { width: 110px; }
