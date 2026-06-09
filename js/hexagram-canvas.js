@@ -31,22 +31,13 @@ const WUXING_COLOR = {'金':'#d4c46a', '木':'#5dbb6a', '水':'#5aaee8', '火':'
 
 // ── 绘制六爻 ────────────────────────────────────────────
 function drawHexagram(canvas, result, col) {
-    const dpr = window.devicePixelRatio || 1;
-    const W = canvas.clientWidth;
-    const H = canvas.clientHeight;
-
-    // Retina 渲染：canvas 内部分辨率 x2
-    if (canvas.width !== W * dpr || canvas.height !== H * dpr) {
-        canvas.width = W * dpr;
-        canvas.height = H * dpr;
-    }
-
     const ctx = canvas.getContext('2d');
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, W, H);
-
+    const W = canvas.width;
+    const H = canvas.height;
     const CX = W / 2;
     const hexColor = THEME.HEX_COLORS[col];
+
+    ctx.clearRect(0, 0, W, H);
 
     let upIdx, loIdx, lns, move, title;
     if (col === 0) {
@@ -63,10 +54,10 @@ function drawHexagram(canvas, result, col) {
     }
 
     const LINE_H = 20;
-    const GAP_Y = 7;
+    const GAP_Y = 6;
     const totalH = 6 * LINE_H + 5 * GAP_Y;
     const y0 = (H - totalH) / 2 + LINE_H / 2;
-    const lineW = 66;
+    const lineW = 70;
 
     for (let i = 0; i < 6; i++) {
         const y = y0 + (5 - i) * (LINE_H + GAP_Y);
@@ -75,7 +66,7 @@ function drawHexagram(canvas, result, col) {
 
         let color, lw, llen;
         if (isMoving) {
-            color = THEME.YAO_MOVING; lw = 5; llen = lineW + 10;
+            color = THEME.YAO_MOVING; lw = 5; llen = lineW + 12;
         } else {
             color = hexColor; lw = 3.5; llen = lineW;
         }
