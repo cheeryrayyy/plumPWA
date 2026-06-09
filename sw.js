@@ -1,5 +1,5 @@
-// Service Worker — 离线缓存
-const CACHE_NAME = 'plum-v1';
+// Service Worker — 网络优先，离线降级
+const CACHE_NAME = 'plum-v2';
 
 const CACHE_FILES = [
     '/plumPWA/',
@@ -23,9 +23,7 @@ self.addEventListener('install', event => {
         caches.open(CACHE_NAME).then(cache => {
             return Promise.all(
                 CACHE_FILES.map(url =>
-                    cache.add(url).catch(err =>
-                        console.warn('Cache failed:', url, err)
-                    )
+                    cache.add(url).catch(() => {})
                 )
             );
         })
@@ -42,20 +40,19 @@ self.addEventListener('activate', event => {
     self.clients.claim();
 });
 
+// 网络优先：先尝试网络，失败才用缓存
 self.addEventListener('fetch', event => {
     event.respondWith(
-        caches.match(event.request).then(cached => {
-            // Return cached, fall back to network (update cache)
-            const fetched = fetch(event.request).then(response => {
-                if (response && response.status === 200) {
-                    const clone = response.clone();
-                    caches.open(CACHE_NAME).then(cache =>
-                        cache.put(event.request, clone)
-                    );
-                }
-                return response;
-            }).catch(() => cached);
-            return cached || fetched;
+        fetch(event.request).then(response => {
+            if (response && response.status === 200) {
+                const clone = response.clone();
+                caches.open(CACHE_NAME).then(cache =>
+                    cache.put(event.request, clone)
+                );
+            }
+            return response;
+        }).catch(() => {
+            return caches.match(event.request);
         })
     );
 });

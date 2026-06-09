@@ -88,12 +88,12 @@ function drawHexagram(canvas, result, col) {
         }
         ctx.stroke();
 
-        // 爻位标签
+        // 爻位标签（放在左侧，避免被屏幕右边缘截断）
         const posLabels = ['初','二','三','四','五','上'];
-        ctx.fillStyle = '#c0b080';  // 比 FG_DIM 更亮
+        ctx.fillStyle = '#c0b080';
         ctx.font = 'bold 13px "PingFang SC", "Hiragino Sans GB", sans-serif';
-        ctx.textAlign = 'right';
-        ctx.fillText(posLabels[i], W - 4, y + 4);
+        ctx.textAlign = 'left';
+        ctx.fillText(posLabels[i], 4, y + 4);
     }
 
     // 返回卦信息用于外部标签
