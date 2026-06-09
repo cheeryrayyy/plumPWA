@@ -210,14 +210,19 @@ function buildRefTable() {
 
 function toggleRef() {
     const ref = document.getElementById('refPanel');
-    const btn = document.getElementById('refToggle');
+    const overlay = document.getElementById('refOverlay');
     if (ref.classList.contains('visible')) {
         ref.classList.remove('visible');
-        btn.textContent = '速查';
+        overlay.classList.remove('visible');
     } else {
         ref.classList.add('visible');
-        btn.textContent = '收起';
+        overlay.classList.add('visible');
     }
+}
+
+function closeRef() {
+    document.getElementById('refPanel').classList.remove('visible');
+    document.getElementById('refOverlay').classList.remove('visible');
 }
 
 // ── 启动 ────────────────────────────────────────────────

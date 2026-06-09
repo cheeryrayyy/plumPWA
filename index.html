@@ -67,9 +67,11 @@
             <div id="panelContent"></div>
         </aside>
 
+        <!-- 速查面板遮罩（点遮罩关闭） -->
+        <div id="refOverlay" class="ref-overlay" onclick="closeRef()"></div>
         <!-- 速查面板（右侧滑入） -->
         <aside id="refPanel">
-            <h2>八卦速查参考</h2>
+            <h2>八卦速查参考 <button id="refCloseBtn" onclick="closeRef()">✕</button></h2>
             <div id="refTable" class="ref-scroll">
                 <table>
                     <thead>
