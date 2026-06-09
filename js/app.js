@@ -95,6 +95,18 @@ function selectMethod(method) {
     showMethodPanel();
 }
 
+// ── 点击主区域关闭方法面板 ──────────────────────────────
+function clickMainArea(e) {
+    if (!liveMode) {
+        // 如果点击的是按钮或输入框本身，不关闭
+        if (e.target.closest('button') || e.target.closest('select') ||
+            e.target.closest('input') || e.target.closest('#methodPanel')) {
+            return;
+        }
+        setLive();
+    }
+}
+
 // ── 方法面板 ──────────────────────────────────────────────
 function showMethodPanel() {
     const panel = document.getElementById('methodPanel');

@@ -26,16 +26,13 @@
         <nav id="tabBar"></nav>
 
         <!-- 四柱信息 -->
-        <section id="infoSection">
+        <section id="infoSection" onclick="clickMainArea(event)">
             <div id="lblPillars" class="pillars-text"></div>
             <div id="lblDetail" class="detail-text"></div>
         </section>
 
-        <!-- 方法和标签切换 -->
-        <input type="checkbox" id="panelToggle" checked>
-
         <!-- 卦象区 -->
-        <main id="hexSection">
+        <main id="hexSection" onclick="clickMainArea(event)">
             <div id="hexGrid">
                 <div class="hex-col" id="hexCol0">
                     <div class="hex-title" id="hexTitle0">本卦</div>
