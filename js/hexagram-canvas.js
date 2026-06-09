@@ -57,7 +57,7 @@ function drawHexagram(canvas, result, col) {
     const GAP_Y = 6;
     const totalH = 6 * LINE_H + 5 * GAP_Y;
     const y0 = (H - totalH) / 2 + LINE_H / 2;
-    const lineW = 50;
+    const lineW = 44;
 
     for (let i = 0; i < 6; i++) {
         const y = y0 + (5 - i) * (LINE_H + GAP_Y);
@@ -66,7 +66,7 @@ function drawHexagram(canvas, result, col) {
 
         let color, lw, llen;
         if (isMoving) {
-            color = THEME.YAO_MOVING; lw = 4; llen = lineW + 10;
+            color = THEME.YAO_MOVING; lw = 4; llen = lineW + 8;
         } else {
             color = hexColor; lw = 2.5; llen = lineW;
         }
@@ -87,17 +87,11 @@ function drawHexagram(canvas, result, col) {
             ctx.lineTo(CX + mid, y);
         }
         ctx.stroke();
-
-        // 爻位标签（放在左侧，避免被屏幕右边缘截断）
-        const posLabels = ['初','二','三','四','五','上'];
-        ctx.fillStyle = '#c0b080';
-        ctx.font = 'bold 13px "PingFang SC", "Hiragino Sans GB", sans-serif';
-        ctx.textAlign = 'left';
-        ctx.fillText(posLabels[i], 4, y + 4);
     }
 
-    // 返回卦信息用于外部标签
-    return { title, upIdx, loIdx, move, hexColor, name: hexName(upIdx, loIdx) };
+    // 爻标签由 HTML 渲染（从上到下：上→初，匹配 canvas）
+    const yaoLabels = ['上','五','四','三','二','初'];
+    return { title, upIdx, loIdx, move, hexColor, name: hexName(upIdx, loIdx), yaoLabels };
 }
 
 // ── 体用分析 ────────────────────────────────────────────

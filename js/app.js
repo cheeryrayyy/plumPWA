@@ -200,6 +200,11 @@ function render(result) {
 
         document.getElementById(`hexTitle${col}`).textContent = titles[col];
         document.getElementById(`hexName${col}`).textContent = info.name;
+
+        // 爻位标签（HTML 渲染，清晰矢量字）
+        const labelDiv = document.getElementById(`yaoLabels${col}`);
+        labelDiv.innerHTML = info.yaoLabels.map(l => `<span>${l}</span>`).join('');
+
         document.getElementById(`hexUpper${col}`).innerHTML =
             `<span style="color:${WUXING_COLOR[WUXING[info.upIdx]]}">${BAGUA_NAMES[info.upIdx-1]}（${WUXING[info.upIdx]}）</span>`;
         document.getElementById(`hexLower${col}`).innerHTML =

@@ -118,7 +118,7 @@ html, body {
 }
 .hex-col {
     display: flex; flex-direction: column; align-items: center;
-    width: 140px;
+    width: auto; min-width: 100px;
 }
 .hex-title {
     font-size: 13px; color: var(--fg-dim); margin-bottom: 2px;
@@ -129,6 +129,20 @@ html, body {
 #hexCol0 .hex-title, #hexCol0 .hex-name { color: #d4a017; }
 #hexCol1 .hex-title, #hexCol1 .hex-name { color: #2ecc88; }
 #hexCol2 .hex-title, #hexCol2 .hex-name { color: #8866dd; }
+
+/* 爻标签 + Canvas 横向排列 */
+.hex-row {
+    display: flex; align-items: stretch; gap: 0;
+}
+.yao-labels {
+    display: flex; flex-direction: column; justify-content: space-around;
+    padding: 8px 4px 8px 0;
+}
+.yao-labels span {
+    font-size: 12px; font-weight: 700; color: #c0b080;
+    line-height: 22px;  /* matches LINE_H + GAP_Y */
+    text-align: right; min-width: 16px;
+}
 
 .hex-col canvas { display: block; }
 .hex-trigram {
@@ -296,7 +310,7 @@ html, body {
 @media (max-width: 380px) {
     .tab-btn { font-size: 12px; padding: 6px 10px; }
     .pillars-text { font-size: 16px; }
-    #hexGrid { gap: 4px; }
-    .hex-col { width: 110px; }
-    .hex-col canvas { width: 110px; height: 140px; }
+    #hexGrid { gap: 2px; }
+    .hex-col canvas { width: 90px; height: 140px; }
+    .yao-labels span { font-size: 11px; line-height: 22px; }
 }
