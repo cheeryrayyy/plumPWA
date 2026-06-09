@@ -68,9 +68,11 @@ html, body {
     display: flex; align-items: center; gap: 4px;
     padding: 8px 12px; overflow-x: auto;
     flex-shrink: 0;
+    width: 100%; max-width: 100%;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    justify-content: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
 }
 #tabBar::-webkit-scrollbar { display: none; }
 
@@ -131,18 +133,9 @@ html, body {
 #hexCol1 .hex-title, #hexCol1 .hex-name { color: #2ecc88; }
 #hexCol2 .hex-title, #hexCol2 .hex-name { color: #8866dd; }
 
-/* 爻标签 + Canvas 横向排列 */
+/* Canvas 容器 */
 .hex-row {
-    display: flex; align-items: stretch; gap: 0;
-}
-.yao-labels {
-    display: flex; flex-direction: column; justify-content: space-around;
-    padding: 8px 4px 8px 0;
-}
-.yao-labels span {
-    font-size: 12px; font-weight: 700; color: #c0b080;
-    line-height: 22px;  /* matches LINE_H + GAP_Y */
-    text-align: right; min-width: 16px;
+    display: flex; align-items: center; justify-content: center;
 }
 
 .hex-col canvas { display: block; }

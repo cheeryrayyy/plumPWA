@@ -31,13 +31,22 @@ const WUXING_COLOR = {'金':'#d4c46a', '木':'#5dbb6a', '水':'#5aaee8', '火':'
 
 // ── 绘制六爻 ────────────────────────────────────────────
 function drawHexagram(canvas, result, col) {
+    const dpr = window.devicePixelRatio || 1;
+    const W = canvas.clientWidth;
+    const H = canvas.clientHeight;
+
+    // Retina 渲染：canvas 内部分辨率 x2
+    if (canvas.width !== W * dpr || canvas.height !== H * dpr) {
+        canvas.width = W * dpr;
+        canvas.height = H * dpr;
+    }
+
     const ctx = canvas.getContext('2d');
-    const W = canvas.width;
-    const H = canvas.height;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+
     const CX = W / 2;
     const hexColor = THEME.HEX_COLORS[col];
-
-    ctx.clearRect(0, 0, W, H);
 
     let upIdx, loIdx, lns, move, title;
     if (col === 0) {
@@ -53,11 +62,11 @@ function drawHexagram(canvas, result, col) {
         lns = result.changeLines; move = result.move; title = '变卦';
     }
 
-    const LINE_H = 16;
-    const GAP_Y = 6;
+    const LINE_H = 20;
+    const GAP_Y = 7;
     const totalH = 6 * LINE_H + 5 * GAP_Y;
     const y0 = (H - totalH) / 2 + LINE_H / 2;
-    const lineW = 44;
+    const lineW = 66;
 
     for (let i = 0; i < 6; i++) {
         const y = y0 + (5 - i) * (LINE_H + GAP_Y);
@@ -66,9 +75,9 @@ function drawHexagram(canvas, result, col) {
 
         let color, lw, llen;
         if (isMoving) {
-            color = THEME.YAO_MOVING; lw = 4; llen = lineW + 8;
+            color = THEME.YAO_MOVING; lw = 5; llen = lineW + 10;
         } else {
-            color = hexColor; lw = 2.5; llen = lineW;
+            color = hexColor; lw = 3.5; llen = lineW;
         }
 
         ctx.strokeStyle = color;
@@ -79,7 +88,7 @@ function drawHexagram(canvas, result, col) {
             ctx.moveTo(CX - llen / 2, y);
             ctx.lineTo(CX + llen / 2, y);
         } else {
-            const gap = llen / 6;
+            const gap = llen / 5;
             const mid = llen / 2;
             ctx.moveTo(CX - mid, y);
             ctx.lineTo(CX - gap, y);
@@ -89,9 +98,7 @@ function drawHexagram(canvas, result, col) {
         ctx.stroke();
     }
 
-    // 爻标签由 HTML 渲染（从上到下：上→初，匹配 canvas）
-    const yaoLabels = ['上','五','四','三','二','初'];
-    return { title, upIdx, loIdx, move, hexColor, name: hexName(upIdx, loIdx), yaoLabels };
+    return { title, upIdx, loIdx, move, hexColor, name: hexName(upIdx, loIdx) };
 }
 
 // ── 体用分析 ────────────────────────────────────────────
