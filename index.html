@@ -18,7 +18,7 @@
         <header id="titleBar">
             <h1>梅 花 易 数</h1>
             <div id="titleBtns">
-                <button id="refToggle" class="title-btn" onclick="toggleRef()">速查</button>
+                <button id="refToggle" class="title-btn">速查</button>
             </div>
         </header>
 
@@ -26,13 +26,13 @@
         <nav id="tabBar"></nav>
 
         <!-- 四柱信息 -->
-        <section id="infoSection" onclick="clickMainArea(event)">
+        <section id="infoSection">
             <div id="lblPillars" class="pillars-text"></div>
             <div id="lblDetail" class="detail-text"></div>
         </section>
 
         <!-- 卦象区 -->
-        <main id="hexSection" onclick="clickMainArea(event)">
+        <main id="hexSection">
             <div id="hexGrid">
                 <div class="hex-col" id="hexCol0">
                     <div class="hex-title" id="hexTitle0">本卦</div>
@@ -64,11 +64,11 @@
             <div id="panelContent"></div>
         </aside>
 
-        <!-- 速查面板遮罩（点遮罩关闭） -->
-        <div id="refOverlay" class="ref-overlay" onclick="closeRef()"></div>
+        <!-- 速查面板遮罩 -->
+        <div id="refOverlay" class="ref-overlay"></div>
         <!-- 速查面板（右侧滑入） -->
         <aside id="refPanel">
-            <h2>八卦速查参考 <button id="refCloseBtn" onclick="closeRef()">✕</button></h2>
+            <h2>八卦速查参考 <button id="refCloseBtn">✕</button></h2>
             <div id="refTable" class="ref-scroll">
                 <table>
                     <thead>

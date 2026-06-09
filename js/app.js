@@ -29,6 +29,7 @@ async function initApp() {
     // 构建 UI
     buildTabBar();
     buildRefTable();
+    bindEvents();
     updateTabStates();
 
     if (liveMode) {
@@ -95,15 +96,59 @@ function selectMethod(method) {
     showMethodPanel();
 }
 
-// ── 点击主区域关闭方法面板 ──────────────────────────────
-function clickMainArea(e) {
-    if (!liveMode) {
-        // 如果点击的是按钮或输入框本身，不关闭
-        if (e.target.closest('button') || e.target.closest('select') ||
-            e.target.closest('input') || e.target.closest('#methodPanel')) {
-            return;
+// ── 事件绑定 ──────────────────────────────────────────────
+function bindEvents() {
+    // 点击主区域（卦象/信息区）→ 关闭方法面板，回实时模式
+    const mainAreas = ['infoSection', 'hexSection'];
+    mainAreas.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('click', function(e) {
+                if (!liveMode) {
+                    if (e.target.closest('button') || e.target.closest('select') ||
+                        e.target.closest('input') || e.target.closest('#methodPanel')) {
+                        return;
+                    }
+                    setLive();
+                }
+            });
+            // iOS Safari touch 兼容
+            el.addEventListener('touchend', function(e) {
+                if (!liveMode) {
+                    if (e.target.closest('button') || e.target.closest('select') ||
+                        e.target.closest('input') || e.target.closest('#methodPanel')) {
+                        return;
+                    }
+                    setLive();
+                }
+            });
         }
-        setLive();
+    });
+
+    // 速查面板 — 切换按钮
+    const refToggle = document.getElementById('refToggle');
+    if (refToggle) {
+        refToggle.addEventListener('click', toggleRef);
+    }
+
+    // 速查面板 — 关闭按钮
+    const refClose = document.getElementById('refCloseBtn');
+    if (refClose) {
+        refClose.addEventListener('click', closeRef);
+        refClose.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            closeRef();
+        });
+    }
+
+    // 速查面板 — 点遮罩关闭
+    const overlay = document.getElementById('refOverlay');
+    if (overlay) {
+        overlay.addEventListener('click', closeRef);
+        overlay.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            closeRef();
+        });
     }
 }
 
