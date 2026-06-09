@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="梅花易数">
+    <meta name="theme-color" content="#1a1a1a">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <title>梅花易数</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 标题栏 -->
+        <header id="titleBar">
+            <h1>梅 花 易 数</h1>
+            <div id="titleBtns">
+                <button id="refToggle" class="title-btn" onclick="toggleRef()">速查</button>
+            </div>
+        </header>
+
+        <!-- 标签栏 -->
+        <nav id="tabBar"></nav>
+
+        <!-- 四柱信息 -->
+        <section id="infoSection">
+            <div id="lblPillars" class="pillars-text"></div>
+            <div id="lblDetail" class="detail-text"></div>
+        </section>
+
+        <!-- 方法和标签切换 -->
+        <input type="checkbox" id="panelToggle" checked>
+
+        <!-- 卦象区 -->
+        <main id="hexSection">
+            <div id="hexGrid">
+                <div class="hex-col" id="hexCol0">
+                    <div class="hex-title" id="hexTitle0">本卦</div>
+                    <div class="hex-name" id="hexName0"></div>
+                    <canvas id="hexCanvas0" width="140" height="160"></canvas>
+                    <div class="hex-trigram" id="hexUpper0"></div>
+                    <div class="hex-trigram" id="hexLower0"></div>
+                </div>
+                <div class="hex-col" id="hexCol1">
+                    <div class="hex-title" id="hexTitle1">互卦</div>
+                    <div class="hex-name" id="hexName1"></div>
+                    <canvas id="hexCanvas1" width="140" height="160"></canvas>
+                    <div class="hex-trigram" id="hexUpper1"></div>
+                    <div class="hex-trigram" id="hexLower1"></div>
+                </div>
+                <div class="hex-col" id="hexCol2">
+                    <div class="hex-title" id="hexTitle2">变卦</div>
+                    <div class="hex-name" id="hexName2"></div>
+                    <canvas id="hexCanvas2" width="140" height="160"></canvas>
+                    <div class="hex-trigram" id="hexUpper2"></div>
+                    <div class="hex-trigram" id="hexLower2"></div>
+                </div>
+            </div>
+            <div id="tiYongRow" class="tiyong-text"></div>
+        </main>
+
+        <!-- 方法面板（底部滑入） -->
+        <aside id="methodPanel">
+            <div id="panelContent"></div>
+        </aside>
+
+        <!-- 速查面板（右侧滑入） -->
+        <aside id="refPanel">
+            <h2>八卦速查参考</h2>
+            <div id="refTable" class="ref-scroll">
+                <table>
+                    <thead>
+                        <tr id="refHeader"></tr>
+                    </thead>
+                    <tbody id="refBody"></tbody>
+                </table>
+            </div>
+        </aside>
+    </div>
+
+    <script src="js/hexagram.js"></script>
+    <script src="js/ganzhi.js"></script>
+    <script src="js/strokes.js"></script>
+    <script src="js/hexagram-canvas.js"></script>
+    <script src="js/methods.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "梅花易数",
+  "short_name": "梅花易数",
+  "description": "梅花易数 — 易经六十四卦起卦工具",
+  "start_url": "/plumPWA/",
+  "scope": "/plumPWA/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1a1a1a",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
